@@ -1,0 +1,25 @@
+# build
+dist/
+.solid/
+.output/
+.vercel/
+.netlify/
+netlify/
+package-lock.json
+
+# dependencies
+node_modules/
+.env
+.expo/
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+
+# System Files
+.DS_Store
+Thumbs.db
+
