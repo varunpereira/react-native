@@ -1,12 +1,13 @@
 import {useState, useEffect} from "react"
-import {View, Text, TextInput, TouchableOpacity, Image, FlatList} from "react-native"
+import {View, Text, TextInput, TouchableOpacity, Image, FlatList, Dimensions, Button} from "react-native"
 import {useRouter} from "expo-router"
-
 import styles from "./welcome.style"
 import {icons, SIZES} from "../../../constants"
 import {test2} from "@env"
 import {T} from "@src/style"
-import {Dimensions} from "react-native"
+import {auth} from "@src/fb"
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
+import {onAuthStateChanged} from "firebase/auth"
 
 var env = {test2}
 
@@ -16,6 +17,10 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 	const router = useRouter()
 	const [activeJobType, setActiveJobType] = useState("Full-time")
 	const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width)
+	var [email, setEmail] = useState("")
+	var [password, setPassword] = useState("")
+	var [load, setLoad] = useState(false)
+	const [user, setUser] = useState()
 
 	useEffect(() => {
 		const updateDimensions = () => {
@@ -27,10 +32,50 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 		}
 	}, [])
 
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			console.log("user", user)
+			setUser(user)
+			// if user == null then not signed in
+		})
+	}, [])
+
+	var signIn = async () => {
+		try {
+			var res = await signInWithEmailAndPassword(auth, email, password)
+			alert('sign in ok')
+		} catch (error) {
+			alert(error)
+		}
+	}
+
+	var signUp = async () => {
+		try {
+			var res = await createUserWithEmailAndPassword(auth, email, password)
+			alert('sign up ok')
+		} catch (error) {
+			alert(error)
+		}
+	}
+
 	return (
 		<View>
 			<View style={styles.container}>
-				<Text style={styles.userName}>Hello Adrian {env?.test2} </Text>
+				<Text>You: {user?.email}</Text>
+				<TextInput value={email} onChangeText={(v) => setEmail(v)} placeholder="Email" />
+				<TextInput
+					value={password}
+					onChangeText={(v) => setPassword(v)}
+					placeholder="Password"
+					secureTextEntry={true}
+				/>
+				<Button title="Sign in" onPress={signIn} />
+				<Button title="Sign up" onPress={signUp} />
+				<Button title="Sign out" onPress={()=>auth.signOut()} />
+			</View>
+
+			<View style={styles.container}>
+				<Text style={styles.userName}>Hello Adrian {test2} </Text>
 				<Text style={styles.welcomeMessage}>Find your perfect job</Text>
 				<Text>Window Width: {windowWidth}</Text>
 				{/* <T>{w}</T> */}
