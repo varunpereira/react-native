@@ -1,11 +1,10 @@
 import {useState, useEffect} from "react"
-import {View, Text, TextInput, TouchableOpacity, Image, FlatList, Dimensions, Button} from "react-native"
+import {View, Text, TextInput, TouchableOpacity, Image, FlatList, Dimensions, Button, SafeAreaView, ScrollView,} from "react-native"
 import {useRouter} from "expo-router"
 import styles from "./welcome.style"
-import {icons, SIZES} from "../../../constants"
 import {test2} from "@env"
-import {T} from "@src/style"
-import {auth} from "@src/fb"
+import {T} from "@app/style"
+import {auth} from "@app/config/fb"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import {onAuthStateChanged} from "firebase/auth"
 
@@ -13,7 +12,7 @@ var env = {test2}
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"]
 
-const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
+export default ({searchTerm, setSearchTerm, handleClick}) => {
 	const router = useRouter()
 	const [activeJobType, setActiveJobType] = useState("Full-time")
 	const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width)
@@ -72,6 +71,7 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 				<Button title="Sign in" onPress={signIn} />
 				<Button title="Sign up" onPress={signUp} />
 				<Button title="Sign out" onPress={()=>auth.signOut()} />
+				<Button title="" onPress={()=> router.push('/sw')}/>
 			</View>
 
 			<View style={styles.container}>
@@ -91,31 +91,9 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
 					/>
 				</View>
 
-				<TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
-					<Image source={icons.search} resizeMode="contain" style={styles.searchBtnImage} />
-				</TouchableOpacity>
 			</View>
-
-			<View style={styles.tabsContainer}>
-				<FlatList
-					data={jobTypes}
-					renderItem={({item}) => (
-						<TouchableOpacity
-							style={styles.tab(activeJobType, item)}
-							onPress={() => {
-								setActiveJobType(item)
-								router.push(`/search/${item}`)
-							}}>
-							<Text style={styles.tabText(activeJobType, item)}>{item}</Text>
-						</TouchableOpacity>
-					)}
-					keyExtractor={(item) => item}
-					contentContainerStyle={{columnGap: SIZES.small}}
-					horizontal
-				/>
-			</View>
+			{/* router.push(`/search/${item}`) */}
 		</View>
 	)
 }
 
-export default Welcome
