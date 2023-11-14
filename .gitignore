@@ -1,25 +1,20 @@
-# build
-dist/
-.solid/
-.output/
-.vercel/
-.netlify/
-netlify/
-package-lock.json
-
-# dependencies
 node_modules/
-.env
 .expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-*.launch
-.settings/
-
-# System Files
+# macOS
 .DS_Store
-Thumbs.db
 
+# vscode
+.vscode
+
+# env
+.env
