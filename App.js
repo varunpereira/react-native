@@ -1,36 +1,22 @@
-import * as React from 'react';
-import { View, Text , Button} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from "@react-navigation/native"
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
+import Home from "@app/land"
 
-function Home({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="mes" onPress={()=> navigation.push('Details')}/>
-    </View>
-  );
+// full page load
+export default () => {
+	var Stack = createNativeStackNavigator()
+	return (
+		<NavigationContainer>
+			<Stack.Navigator
+				initialRouteName="Home"
+				screenOptions={{headerShown: false, headerStyle: {backgroundColor: "red"}, headerTitle: ""}}>
+				{/* partial page load */}
+				<Stack.Screen component={Home} name="Home" />
+			</Stack.Navigator>
+		</NavigationContainer>
+	)
 }
-
-function Details() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={Details} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-export default App;
+/*
+orientation:'portrait_up'
+nav cont : linking={{config: {screens: {Home: "/", Details: "feed"}}}}
+*/

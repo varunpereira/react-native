@@ -3,9 +3,7 @@ import {getAuth, initializeAuth, getReactNativePersistence} from "firebase/auth"
 import {getFirestore} from "firebase/firestore"
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage"
 import { Platform } from 'react-native';
-import {apiKey,authDomain,projectId,storageBucket,messagingSenderId,appId} from "@env"
-
-var env = {apiKey,authDomain,projectId,storageBucket,messagingSenderId,appId}
+import {env} from "@app/imports/env"
 
 var fbConfig = {
 	apiKey: env.apiKey,
@@ -17,6 +15,7 @@ var fbConfig = {
 }
 
 export const fb = initializeApp(fbConfig)
+// delete since mobile app
 if (Platform.OS !== 'web') {
   initializeAuth(fb, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage),
