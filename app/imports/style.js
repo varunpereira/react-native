@@ -12,20 +12,13 @@ import {
 	StatusBar,
 } from "react-native"
 import {StyleSheet} from "react-native"
-import tw from "twrnc"
+import t from "twrnc"
 import {useState, useEffect} from "react"
+
+export {t, View, Text, Image, FlatList, Dimensions, TouchableOpacity as Button, ScrollView}
 
 export var Page = (p) => {
 	return <SafeAreaView>{p?.children}</SafeAreaView>
-}
-
-export var Part = (p) => {
-	var {textStyle, ...props} = p
-	return (
-		<View {...props}>
-			<Text style={textStyle}>{p?.children}</Text>
-		</View>
-	)
 }
 
 export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
@@ -43,12 +36,11 @@ export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
 				handleBlur()
 				onBlur && onBlur()
 			}}
-			style={[style, {outline:'none'}, isFocused && focusStyle]}
+			style={[style, isFocused && focusStyle]}
+			// {outline: "none"},
 		/>
 	)
 }
-
-export var t = tw
 
 export var s = StyleSheet.create({
 	// fits

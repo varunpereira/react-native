@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app"
-import {getAuth, initializeAuth, getReactNativePersistence} from "firebase/auth"
+import {getAuth, initializeAuth, getReactNativePersistence,onAuthStateChanged} from "firebase/auth"
 import {getFirestore} from "firebase/firestore"
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage"
 import { Platform } from 'react-native';
@@ -22,4 +22,5 @@ if (Platform.OS !== 'web') {
   })
 } 
 export const auth = getAuth(fb)
+export const authChanged = onAuthStateChanged
 export const db = getFirestore(fb)

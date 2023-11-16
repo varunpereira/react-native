@@ -1,6 +1,7 @@
 import {NavigationContainer} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
-import Home from "@app/land"
+import Home from "@app/Home"
+import SignIn from "@app/SignIn"
 
 // full page load
 export default () => {
@@ -8,9 +9,10 @@ export default () => {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator
-				initialRouteName="Home"
+				initialRouteName="SignIn"
 				screenOptions={{headerShown: false, headerStyle: {backgroundColor: "red"}, headerTitle: ""}}>
 				{/* partial page load */}
+				<Stack.Screen component={SignIn} name="SignIn" />
 				<Stack.Screen component={Home} name="Home" />
 			</Stack.Navigator>
 		</NavigationContainer>
