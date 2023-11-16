@@ -18,7 +18,11 @@ import {useState, useEffect} from "react"
 export {t, View, Text, Image, FlatList, Dimensions, TouchableOpacity as Button, ScrollView}
 
 export var Page = (p) => {
-	return <SafeAreaView>{p?.children}</SafeAreaView>
+	return (
+		<SafeAreaView>
+			{p?.children}
+		</SafeAreaView>
+	)
 }
 
 export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
@@ -37,7 +41,6 @@ export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
 				onBlur && onBlur()
 			}}
 			style={[style, isFocused && focusStyle]}
-			// {outline: "none"},
 		/>
 	)
 }

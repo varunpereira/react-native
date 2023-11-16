@@ -2,6 +2,7 @@ import {Page, View, Text, Button, Input, t} from "@app/imports/style"
 import {useState, useEffect} from "react"
 import {auth, authChanged, db} from "@app/config/fb"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
+import Nav from "@app/Nav"
 
 export default ({navigation}) => {
 	var [error, setError] = useState("")
@@ -28,6 +29,7 @@ export default ({navigation}) => {
 
 	return (
 		<Page>
+			<Nav />
 			<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}>
 				<View style={t`bg-white rounded-lg w-[16rem] p-[1rem] mb-[1rem] `}>
 					<Text style={t`text-lg font-semibold mb-[.5rem]`}>Sign in</Text>
@@ -63,4 +65,6 @@ export default ({navigation}) => {
 		</Page>
 	)
 }
-/* <Button title="Sign out" onPress={() => auth.signOut()} /> */
+/* 
+items = x, justify = y
+<Button title="Sign out" onPress={() => auth.signOut()} /> */
