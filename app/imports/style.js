@@ -14,21 +14,23 @@ import {
 import {StyleSheet} from "react-native"
 import t from "twrnc"
 import {useState, useEffect} from "react"
+import Nav from "@app/Nav"
 
 export {t, View, Text, Image, FlatList, Dimensions, TouchableOpacity as Button, ScrollView}
 
-export var Page = (p) => {
+export var Page = ({children}) => {
 	return (
 		<SafeAreaView>
-			{p?.children}
+			<Nav />
+			{children}
 		</SafeAreaView>
 	)
 }
 
 export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
-	const [isFocused, setIsFocused] = useState(false)
-	const handleFocus = () => setIsFocused(true)
-	const handleBlur = () => setIsFocused(false)
+	const [focused, setfocused] = useState(false)
+	const handleFocus = () => setfocused(true)
+	const handleBlur = () => setfocused(false)
 	return (
 		<TextInput
 			{...props}
@@ -40,7 +42,7 @@ export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
 				handleBlur()
 				onBlur && onBlur()
 			}}
-			style={[style, isFocused && focusStyle]}
+			style={[style, focused && focusStyle]}
 		/>
 	)
 }

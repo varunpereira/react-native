@@ -10,7 +10,12 @@ export default () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				initialRouteName="SignIn"
-				screenOptions={{headerShown: false, headerStyle: {backgroundColor: "red"}, headerTitle: ""}}>
+				screenOptions={{
+					headerShown: false,
+					headerStyle: {backgroundColor: "red"},
+					headerTitle: "",
+					animation: "none",
+				}}>
 				{/* partial page load */}
 				<Stack.Screen component={SignIn} name="SignIn" />
 				<Stack.Screen component={Home} name="Home" />

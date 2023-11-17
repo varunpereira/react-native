@@ -1,6 +1,5 @@
 import {Page, View, Text, Button, Input, t} from "@app/imports/style"
 import {state, effect, globalUser} from "@app/imports/state"
-import Nav from "@app/Nav"
 import {auth, authSet, db} from "@app/config/fb"
 import {collection, addDoc} from "firebase/firestore"
 
@@ -31,7 +30,6 @@ export default ({navigation}) => {
 
 	return (
 		<Page>
-			<Nav />
 			<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}>
 				<Text style={t`text-white text-lg font-semibold`}>Welcome {user()?.email}</Text>
 			</View>
