@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "mobile": "npx expo start --tunnel",
+    "app": "npx expo start --tunnel",
     "web": "npx expo start --web",
     "android": "npx expo start --android",
     "ios": "npx expo start --ios"

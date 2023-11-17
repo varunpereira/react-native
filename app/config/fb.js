@@ -22,5 +22,5 @@ if (Platform.OS !== 'web') {
   })
 } 
 export const auth = getAuth(fb)
-export const authChanged = onAuthStateChanged
+export const authSet = onAuthStateChanged
 export const db = getFirestore(fb)

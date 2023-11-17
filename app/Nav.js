@@ -1,19 +1,24 @@
 import {Page, View, Text, Button, Input, t} from "@app/imports/style"
-import {useState, useEffect} from "react"
-import {auth, authChanged, db} from "@app/config/fb"
+import {auth, authSet, db} from "@app/config/fb"
 import {collection, addDoc} from "firebase/firestore"
-import {useUser} from "@app/imports/state"
+import {globalUser} from "@app/imports/state"
 
-export default (props) => {
-	var [user, setUser] = useUser()
-	var [email, setEmail] = useState("")
-	var [password, setPassword] = useState("")
+export default () => {
+	var user = globalUser()
 
 	return (
 		<Page>
-			<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}>
-				<Text style={t`text-white text-lg font-semibold`}>Welcome {user?.email}</Text>
+			<View style={t`bg-black py-[2rem] flex items-center`}>
+				<Text style={t`text-white text-lg font-semibold`}>Welcome {user()?.email}</Text>
 			</View>
 		</Page>
 	)
 }
+
+/*
+<Nav user={user} />
+
+export default ({user}) => {
+	var [user2, setUser2] = useState()
+	useEffect(() => setUser2(user), [user])
+ */
