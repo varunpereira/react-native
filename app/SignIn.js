@@ -29,8 +29,8 @@ export default ({navigation}) => {
 	return (
 		<Page>
 			{/*<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}> */}
-			<View style={s("syFull sxFull p=40 cBlack aCol axMid ayMid")}>
-				<View style={s("cWhite sx=400 p=20 mb=20 r=10")}>
+			<View style={s("sxFull syFull p=40 cBlack aCol axMid ")}>
+				<View style={s("sx=400 p=20 mb=20 cWhite r=10 ")}>
 					<Text style={t`text-lg font-semibold mb-[.5rem]`}>Sign in</Text>
 					<Input
 						value={email()}
