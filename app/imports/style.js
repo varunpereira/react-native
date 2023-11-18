@@ -47,28 +47,42 @@ export var Input = ({focusStyle, style, onFocus, onBlur, ...props}) => {
 	)
 }
 
-export var s = StyleSheet.create({
+export var s = (tokens) => {
+	var arr = []
+	tokens = tokens.split(/(\s+)/)
+	for (let i = 0; i < tokens.length; i++) {
+		if (tokens[i].includes("=")) {
+			var [key, value] = tokens[i].split("=")
+			arr.push(s2[key](isNaN(value) ? value : parseInt(value)))
+		} else arr.push(s2[tokens[i]])
+	}
+	return arr
+}
+
+export var s2 = StyleSheet.create({
 	// fits
 	fit1: {},
 	// sizes
-	x: (v) => ({width: v}),
-	xFit: {width: "fit-content"},
-	xFull: {width: "100%"},
-	xMin: (v) => ({minWidth: v}),
-	xMax: (v) => ({minWidth: v}),
-	y: (v) => ({height: v}),
-	yFit: {height: "fit-content"},
-	yFull: {height: "100%"},
-	yMin: (v) => ({minHeight: v}),
-	yMax: (v) => ({minHeight: v}),
+	sx: (v) => ({width: v}),
+	sxFit: {width: "fit-content"},
+	sxFull: {width: "100%"},
+	sxMin: (v) => ({minWidth: v}),
+	sxMax: (v) => ({minWidth: v}),
+	sy: (v) => ({height: v}),
+	syFit: {height: "fit-content"},
+	syFull: {height: "100%"},
+	syMin: (v) => ({minHeight: v}),
+	syMax: (v) => ({minHeight: v}),
 	mxAuto: {marginLeft: "auto", marginRight: "auto"},
 	myAuto: {marginTop: "auto", marginBottom: "auto"},
 	ml: (v) => ({marginTop: v}),
 	mr: (v) => ({marginTop: v}),
 	mx: (v) => ({marginTop: v}),
 	mt: (v) => ({marginTop: v}),
-	mb: (v) => ({marginTop: v}),
+	mb: (v) => ({marginBottom: v}),
 	my: (v) => ({marginTop: v}),
+	p: (v) => ({padding: v}),
+	pl: (v) => ({padding: v}),
 	pl: (v) => ({marginTop: v}),
 	pr: (v) => ({marginTop: v}),
 	px: (v) => ({marginTop: v}),
@@ -144,4 +158,6 @@ export var s = StyleSheet.create({
 	topAuto: {top: "auto"},
 	base: (v) => ({bottom: v}),
 	baseAuto: {bottom: "auto"},
+	// 
+	r: (v) => ({borderRadius: v}),
 })

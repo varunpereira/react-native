@@ -1,4 +1,4 @@
-import {Page, View, Text, Button, Input, t} from "@app/imports/style"
+import {Page, View, Text, Button, Input, t, s} from "@app/imports/style"
 import {state, effect, globalUser} from "@app/imports/state"
 import {auth, authSet, db} from "@app/config/fb"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
@@ -28,8 +28,9 @@ export default ({navigation}) => {
 
 	return (
 		<Page>
-			<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}>
-				<View style={t`bg-white rounded-lg w-[16rem] p-[1rem] mb-[1rem] `}>
+			{/*<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}> */}
+			<View style={s("syFull sxFull p=40 cBlack aCol axMid ayMid")}>
+				<View style={s("cWhite sx=400 p=20 mb=20 r=10")}>
 					<Text style={t`text-lg font-semibold mb-[.5rem]`}>Sign in</Text>
 					<Input
 						value={email()}
