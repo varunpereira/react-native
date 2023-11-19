@@ -53,12 +53,13 @@ export var s = (tokens) => {
 	for (let i = 0; i < tokens.length; i++) {
 		if (tokens[i].includes("=")) {
 			var [key, value] = tokens[i].split("=")
-			arr.push(s2[key](isNaN(value) ? value : parseInt(value)))
-		} else arr.push(s2[tokens[i]])
+			if (s2.hasOwnProperty(key)) arr.push(s2[key](isNaN(value) ? value : parseInt(value)))
+		} else if (s2.hasOwnProperty(tokens[i])) arr.push(s2[tokens[i]])
 	}
 	return arr
 }
 
+// is reactive.
 export var s2 = StyleSheet.create({
 	// fits
 	fit1: {},
@@ -89,6 +90,7 @@ export var s2 = StyleSheet.create({
 	pb: (v) => ({paddingBottom: v}),
 	py: (v) => ({paddingVertical: v}),
 	// borders
+	bw: (v) => ({borderWidth: v}),
 	bw1: {borderWidth: 1},
 	bw2: {borderWidth: 2},
 	bw3: {borderWidth: 3},
@@ -99,10 +101,12 @@ export var s2 = StyleSheet.create({
 	// text color for text comp only
 	tcWhite: {color: "white"},
 	tcBlack: {color: "black"},
+	ts: (v) => ({fontSize: v}),
 	ts1: {fontSize: 10},
 	ts2: {fontSize: 20},
 	ts3: {fontSize: 30},
 	tf1: {fontFamily: "verdana"},
+	tw: (v) => ({fontWeight: v}),
 	tw1: {fontWeight: 900},
 	tw2: {fontWeight: 800},
 	tw3: {fontWeight: 700},
@@ -130,20 +134,20 @@ export var s2 = StyleSheet.create({
 	ibcBlack: {stroke: "black"},
 	// shadows
 	s1: {boxShadow: ""},
-	// aligns
+	// direction and opposite dir
 	aNull: {flex: "none"},
-	aRow: {display: "flex", flexDirection: "row"},
-	aCol: {display: "flex", flexDirection: "column"},
-	aRowAuto: {display: "flex", flexDirection: "row", flexWrap: "wrap"},
-	aColAuto: {display: "flex", flexDirection: "column", flexWrap: "wrap"},
-	axLeft: {justifyContent: "flex-start"},
-	axMid: {justifyContent: "center"},
-	axRight: {justifyContent: "flex-end"},
-	axSame: {justifyContent: "space-between"},
-	ayTop: {alignContent: "flex-start"},
-	ayMid: {alignContent: "center"},
-	ayBase: {alignContent: "flex-end"},
-	aySame: {alignContent: "space-between"},
+	dx: {display: "flex", flexDirection: "row"},
+	dy: {display: "flex", flexDirection: "column"},
+	dxAuto: {display: "flex", flexDirection: "row", flexWrap: "wrap"},
+	dyAuto: {display: "flex", flexDirection: "column", flexWrap: "wrap"},
+	dStart: {justifyContent: "flex-start"},
+	dMid: {justifyContent: "center"},
+	dEnd: {justifyContent: "flex-end"},
+	dSame: {justifyContent: "space-between"},
+	oStart: {alignItems: "flex-start"},
+	oMid: {alignItems: "center"},
+	oEnd: {alignItems: "flex-end"},
+	oSame: {alignItems: "space-between"},
 	// z axis
 	zNormal: {position: "static"},
 	zFit: {position: "relative"},
@@ -157,6 +161,6 @@ export var s2 = StyleSheet.create({
 	topAuto: {top: "auto"},
 	base: (v) => ({bottom: v}),
 	baseAuto: {bottom: "auto"},
-	// 
+	//
 	r: (v) => ({borderRadius: v}),
 })

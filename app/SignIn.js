@@ -28,24 +28,23 @@ export default ({navigation}) => {
 
 	return (
 		<Page>
-			{/*<View style={t`bg-black py-[2rem] h-full w-full flex items-center`}> */}
-			<View style={s("sxFull syFull p=40 cBlack aCol axMid ")}>
-				<View style={s("sx=400 p=20 mb=20 cWhite r=10 ")}>
-					<Text style={t`text-lg font-semibold mb-[.5rem]`}>Sign in</Text>
+			<View style={s(`sxFull syFull p=40 cBlack dy oMid`)}>
+				<View style={s(`sx=350 p=20 mb=20 cWhite r=10 `)}>
+					<Text style={s(`ts=20 tw=500 mb=10`)}>Sign in</Text>
 					<Input
 						value={email()}
 						onChangeText={(v) => email(v)}
-						placeholder="Email"
-						style={t`border rounded-lg px-1 mb-2 h-[1.5rem]`}
-						focusStyle={t`border-2`}
+						placeholder={`Email`}
+						style={s(`bw=1 r=10 px=5 mb=10 sy=30`)}
+						focusStyle={t`bw=2`}
 					/>
 					<Input
 						value={password()}
 						onChangeText={(v) => password(v)}
-						placeholder="Password"
+						placeholder={"Password"}
 						secureTextEntry={true}
-						style={t`border rounded-lg px-1 mb-4 h-[1.5rem]`}
-						focusStyle={t`border-2`}
+						style={s(`bw=1 r=10 px=5 mb=10 sy=30`)}
+						focusStyle={t`bw=2`}
 					/>
 					<Button
 						onPress={signIn}
@@ -54,7 +53,7 @@ export default ({navigation}) => {
 					</Button>
 					<Text style={t`text-red-600 text-xs h-[2rem]`}>{error()}</Text>
 				</View>
-				<View style={t`w-[16rem] flex flex-row`}>
+				<View style={s('sx=350 dx')}>
 					<Text style={t`text-white text-xs`}>Don't have an account?</Text>
 					<Button onPress={""} style={t`ml-[.2rem]`}>
 						<Text style={t`text-white text-xs `}>Sign up</Text>
